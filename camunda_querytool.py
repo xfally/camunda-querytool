@@ -222,12 +222,12 @@ def view_process_instance_variables(process_instance_id):
         if auth_method == "Bearer Token":
             headers["Authorization"] = f"Bearer {st.session_state.token}"
             response = requests.get(
-                f"{st.session_state.base_url}/process-instance/{process_instance_id}/variables",
+                f"{st.session_state.base_url}/process-instance/{process_instance_id}/variables?deserializeValues=false",
                 headers=headers,
             )
         else:
             response = requests.get(
-                f"{st.session_state.base_url}/process-instance/{process_instance_id}/variables",
+                f"{st.session_state.base_url}/process-instance/{process_instance_id}/variables?deserializeValues=false",
                 auth=HTTPBasicAuth(
                     st.session_state.username, st.session_state.password
                 ),
@@ -251,12 +251,12 @@ def view_history_process_instance_variables(history_process_instance_id):
         if auth_method == "Bearer Token":
             headers["Authorization"] = f"Bearer {st.session_state.token}"
             response = requests.get(
-                f"{st.session_state.base_url}/history/variable-instance?processInstanceId={history_process_instance_id}",
+                f"{st.session_state.base_url}/history/variable-instance?processInstanceId={history_process_instance_id}&deserializeValues=false",
                 headers=headers,
             )
         else:
             response = requests.get(
-                f"{st.session_state.base_url}/history/variable-instance?processInstanceId={history_process_instance_id}",
+                f"{st.session_state.base_url}/history/variable-instance?processInstanceId={history_process_instance_id}&deserializeValues=false",
                 auth=HTTPBasicAuth(
                     st.session_state.username, st.session_state.password
                 ),
