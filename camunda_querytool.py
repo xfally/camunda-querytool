@@ -1,5 +1,8 @@
+import os
+
 import requests
 import streamlit as st
+from dotenv import load_dotenv
 from requests.auth import HTTPBasicAuth
 
 title = "Camunda Process Instance Query Tool"
@@ -10,9 +13,11 @@ st.set_page_config(
     layout="wide",
 )
 
-st.session_state.base_url = st.session_state.get(
-    "base_url", "http://localhost:8080/engine-rest"
-)
+# 从.env文件中加载环境变量
+load_dotenv()
+camunda_base_url = os.getenv("CAMUNDA_BASE_URL", "http://localhost:8080/engine-rest")
+
+st.session_state.base_url = st.session_state.get("base_url", camunda_base_url)
 st.session_state.username = st.session_state.get("username", "")
 st.session_state.password = st.session_state.get("password", "")
 st.session_state.token = st.session_state.get("token", "")
